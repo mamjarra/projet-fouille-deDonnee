@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\bmd tech\Documents\esp_s2\Fouille de donnees\projet\Master1.GLSI.MameBousso.Mbacke_Mously.Diakhate\env_fouille
+set VIRTUAL_ENV=C:\Users\bmd tech\Desktop\Master1.GLSI.Mame_Bousso_Mbacke-Mously_Diakhate\Master1.GLSI.MameBousso.Mbacke_Mously.Diakhate\env_fouille
 
 if not defined PROMPT set PROMPT=$P$G
 

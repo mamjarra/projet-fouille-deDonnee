@@ -6,22 +6,10 @@ import matplotlib.pyplot as plt
 from gensim.models import Word2Vec
 
 # ------------------------
-# 🎨 Mise en page
-# ------------------------
-st.set_page_config(page_title="SIEM Log Analyzer", page_icon="🛡️", layout="centered")
-st.markdown("""
-    <style>
-    .main { background-color: #f0f2f6; }
-    .stTextArea textarea { font-size: 16px; }
-    footer {visibility: hidden;}
-    </style>
-""", unsafe_allow_html=True)
-
-# ------------------------
 # 📦 Charger Word2Vec & LabelEncoder
 # ------------------------
 w2v_model = Word2Vec.load("src/vectorizer.model")
-label_encoder = joblib.load("src/label_encoder.pkl")  # Assure-toi que ce fichier est bien généré dans prepare_dataset.py
+label_encoder = joblib.load("src/label_encoder.pkl")
 
 # ------------------------
 # ⚙️ Fonctions
@@ -48,6 +36,7 @@ anomaly_labels = [
 # ------------------------
 # Interface utilisateur
 # ------------------------
+st.set_page_config(page_title="SIEM Log Analyzer", page_icon="🛡️", layout="centered")
 st.title("🛡️ Analyse de Logs SIEM")
 st.subheader("Détection intelligente des anomalies 🔍")
 st.markdown("---")
@@ -74,14 +63,12 @@ if st.button("🔍 Lancer la prédiction"):
                 pred_class = clf.predict(vec)[0]
                 label = label_encoder.inverse_transform([pred_class])[0]
 
-
             # Affichage résultat
             st.subheader("🔎 Résultat de l'analyse")
             if label in anomaly_labels:
                 st.error(f"🚨 Anomalie détectée ! Label : `{label}`")
             else:
                 st.success(f"✅ Log normal. Label : `{label}`")
-                st.balloons()
 
             # 🔍 Analyse détaillée
             st.markdown("### 📊 Analyse du log")
